@@ -26,10 +26,10 @@ let parseData = (username, count) => {
         itemes = document.getElementById('itemes');
         let animeDIV = document.createElement('div');
         animeDIV.className = 'animeList';
-        animeDIV.innerHTML = `<div class="innerDivNO text">${srealNumber+1}</div>
-                            <img class=animeDP src=${animeData[i].image_url}>
-                            <a class="animeName text" href=${animeData[i].url} target="_blank">${animeData[i].title}</a>
-                            <div class="watchedEP text">${animeData[i].watched_episodes}</div>`;
+        animeDIV.innerHTML = `<div class="innerDivNO text">${srealNumber+1}</div>`
+                          +  `<img class=animeDP src=${animeData[i].image_url}>`
+                          + `<a class="animeName text" href=${animeData[i].url} target="_blank">${animeData[i].title}</a>`
+                          + `<div class="watchedEP text">${animeData[i].watched_episodes}</div>`;
 
         // let innerDivNO = document.createElement('div');
         // innerDivNO.className = 'innerDivNO';

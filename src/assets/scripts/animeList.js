@@ -1,25 +1,28 @@
-let username = "Dark_Vash";
-// let username = "Bk-201kun";
-let page = 0;
+// let username = "Dark_Vash";
+let username = "Bk-201kun";
+let page = 1;
 var request = new XMLHttpRequest();
 let animeId = {};
-let urlCORS = "https://cors-anywhere.herokuapp.com/";
-let url = "https://myanimelist.net/ajaxtb.php?keepThis=true&detailedaid=35203";
+let srealNumber = 0;
 
 
-let parseData = () => {
+
+
+
+let parseData = (username, count) => {
   request.open(
     "GET",
-    `https://api.jikan.moe/v3/user/${username}/animelist/all/${page}`
+    `https://api.jikan.moe/v3/user/${username}/animelist/all/${count}`
   );
+  request.send();
 
   request.onload = () => {
     if (request.status == 200) {
       let animeData = JSON.parse(request.response).anime;
-      console.log(animeData);
+      let isCon = animeData.length;
+      // console.log(animeData);
       for (i = 0; i < animeData.length; i++) {
         // console.log(animeData[i].mal_id) end_date start_date total_episodes url image_url /6 watched_episodes
-        let srealNumber = i;
         itemes = document.getElementById('itemes');
         let animeDIV = document.createElement('div');
         animeDIV.className = 'animeList';
@@ -52,12 +55,23 @@ let parseData = () => {
 
 
         itemes.append(animeDIV);
+        srealNumber ++;
       }
-      // console.log(animeData[i].titel);
+      isContonue(isCon, count)
     } else {
       console.error("error");
     }
+
   };
-  request.send();
+
 }
-parseData();
+let isContonue = (data, count) => {
+    count++;
+    if (data != 0) {
+      parseData(username, count)
+    } else {
+      console.log('Done')
+    }
+
+  }
+parseData(username, page);
